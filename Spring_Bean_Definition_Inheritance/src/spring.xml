@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+                  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+    
+
+<beans>
+
+    <bean id="parenttriangle" class="org.demo.spring.Triangle" abstract="true">
+       <property name="points">
+       <list>
+          <ref bean="pointA"/>
+       
+       </list>
+       </property>
+   </bean>
+
+   <!-- <bean id="parenttriangle" class="org.demo.spring.Triangle">
+       <property name="pointA" ref="pointA" />
+   
+   </bean> -->
+   
+	<!-- <bean id="triangle1" class="org.demo.spring.Triangle" parent="parenttriangle" >   
+		  <property name="pointB" ref="pointB"/>
+		  <property name="pointC" ref="pointC"/>
+	</bean> -->
+	
+	<bean id="triangle1" class="org.demo.spring.Triangle" parent="parenttriangle" >   
+		  <property name="points" >
+		  <list merge="true">
+		      <ref bean="pointB" />
+		  </list>
+		  </property>
+	</bean>
+	
+	<bean id="triangle2" class="org.demo.spring.Triangle" parent="parenttriangle">
+	      <property name="pointB" ref="pointB"/>
+	 </bean>
+	
+	<bean id="pointA" class="org.demo.spring.Point">
+	      <property name="x" value="0"/>
+	      <property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointB" class="org.demo.spring.Point">
+	       <property name="x" value="-20"/>
+	       <property name="y" value="0"/>
+	</bean>
+	
+	<bean id="pointC" class="org.demo.spring.Point">
+	       <property name="x" value="20"/>
+	       <property name="y" value="0"/>
+	</bean>
+   
+	
+   
+</beans>
